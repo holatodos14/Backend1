@@ -16,7 +16,8 @@ export const getAllIncidents = async (req, res, next) => {
     const incidents = await Incident.findAll()
     res.json(incidents)
   } catch (error) {
-    next(error)
+    console.error('Error fetching incidents:', error)
+    res.status(500).json({ message: 'Internal Server Error' })
   }
 }
 

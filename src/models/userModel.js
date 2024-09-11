@@ -14,13 +14,16 @@ class User {
     return rows
   }
 
-  static async finpoolyId (id) {
+  static async findById (id) {
     const [rows] = await pool.execute('SELECT id, fName, lName, username, email, role, createdAt FROM Users WHERE id = ?', [id])
     return rows[0] || null
   }
 
-  static async findOne ({ email }) {
-    const [rows] = await pool.execute('SELECT * FROM Users WHERE email = ?', [email])
+  static async findOne ({ username }) {
+    if (!username) {
+      throw new Error('Username is required')
+    }
+    const [rows] = await pool.execute('SELECT * FROM Users WHERE username = ?', [username])
     return rows[0] || null
   }
 

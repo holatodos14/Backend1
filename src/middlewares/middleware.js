@@ -5,7 +5,7 @@ export const validateCORS = (req, res, next) => {
   if (validOrigins.includes(origin) || !origin) {
     res.setHeader('Access-Control-Allow-Origin', origin ?? '*')
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
     return next()
   }
 
